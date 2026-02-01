@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-background text-text-primary font-sans;
+    font-family: "Josefin Sans", sans-serif;
+  }
+}
+
+@theme {
+  --color-primary: #1e3a8a;
+  --color-secondary: #2563eb;
+  --color-background: #f9fafb;
+  --color-input-border: #9ca3af;
+  --color-text-primary: #111827;
+
+  --text-heading: 2.5rem;
+  --text-subheading: 1.875rem;
+  --text-body: 1.125rem;
+  --text-small: 0.875rem;
+}
+
+.main {
+  @apply h-screen w-screen flex justify-center items-end p-40 bg-background;
+}
+
+.input {
+  @apply w-full text-center outline-none border-b-2 py-2;
+  border-color: var(--color-input-border);
+  font-size: var(--text-body); /* fixed */
+  transition: border-color 0.2s ease-in-out;
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+}
+
+.heading {
+  @apply font-bold;
+  font-size: var(--text-heading);
+  color: var(--color-text-primary);
+}
+
+.container {
+  @apply max-w-lg w-full mx-auto flex flex-col text-center gap-10;
+}
