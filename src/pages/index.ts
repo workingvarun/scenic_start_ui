@@ -1,2 +1,2 @@
-export { default as Unauth } from "./Unauth";
-export { default as Auth } from "./Auth";
+export { default as KnowYourClient } from "./KnowYourClient";
+export { default as ScenicApp } from "./ScenicApp";

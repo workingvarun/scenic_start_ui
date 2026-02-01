@@ -10,7 +10,7 @@ type Values = {
   confirmPassword: string;
 };
 
-export default function Unauth() {
+export default function KnowYourClient() {
   const [step, setStep] = useState(0);
   const [emailExists, setEmailExists] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Auth, Unauth } from "./pages";
+import { ScenicApp, KnowYourClient } from "./pages";
 import { isMe } from "./api";
 
 export default function ProtectedApp() {
@@ -35,12 +35,9 @@ export default function ProtectedApp() {
         authenticated ? "bg-auth" : "bg-unauth"
       }`}
     >
-      {/* overlay */}
-      <div className="absolute inset-0 bg-black/40" />
-
-      {/* content */}
+      <div className="absolute inset-0 bg-black/10" />
       <div className="relative z-10">
-        {authenticated ? <Auth /> : <Unauth />}
+        {authenticated ? <ScenicApp /> : <KnowYourClient />}
       </div>
     </div>
   );
