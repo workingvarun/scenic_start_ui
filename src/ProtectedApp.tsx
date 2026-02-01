@@ -35,7 +35,7 @@ export default function ProtectedApp() {
         authenticated ? "bg-auth" : "bg-unauth"
       }`}
     >
-      <div className="absolute inset-0 bg-black/10" />
+      <div className="absolute inset-0 bg-black/30" />
       <div className="relative z-10">
         {authenticated ? <ScenicApp /> : <KnowYourClient />}
       </div>

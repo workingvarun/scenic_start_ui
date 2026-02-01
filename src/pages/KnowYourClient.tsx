@@ -148,7 +148,7 @@ export default function KnowYourClient() {
   };
 
   return (
-    <main className="main">
+    <main className="kyc__main">
       <div className="container">
         <span className="heading">
           {current.text}{" "}
@@ -163,7 +163,7 @@ export default function KnowYourClient() {
             type={isPassword && !showPassword ? "password" : "text"}
             placeholder={current.p}
             value={values[current.key as keyof Values]}
-            className="input pr-10"
+            className="kyc__input pr-10"
             disabled={loading && current.key === "email"}
             onChange={(e) =>
               setValues({ ...values, [current.key]: e.target.value })
