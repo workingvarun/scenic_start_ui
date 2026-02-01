@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { isMe } from "./api";
+import { useState, useEffect } from "react";
 import { Auth, Unauth } from "./pages";
+import { isMe } from "./api";
 
 export default function ProtectedApp() {
   const [loading, setLoading] = useState(true);
@@ -23,11 +23,25 @@ export default function ProtectedApp() {
 
   if (loading) {
     return (
-      <div className="text-center flex justify-center items-center h-svh">
+      <div className="flex h-svh items-center justify-center text-body">
         Checking authentication…
       </div>
     );
   }
 
-  return authenticated ? <Auth /> : <Unauth />;
+  return (
+    <div
+      className={`relative min-h-svh bg-cover bg-center ${
+        authenticated ? "bg-auth" : "bg-unauth"
+      }`}
+    >
+      {/* overlay */}
+      <div className="absolute inset-0 bg-black/40" />
+
+      {/* content */}
+      <div className="relative z-10">
+        {authenticated ? <Auth /> : <Unauth />}
+      </div>
+    </div>
+  );
 }

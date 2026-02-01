@@ -32,20 +32,39 @@ export default function Unauth() {
   }, [step]);
 
   const steps = [
-    { key: "name", q: "Let’s start with your name.", p: "Type your name" },
-    { key: "email", q: "What’s your email?", p: "you@example.com" },
+    {
+      key: "name",
+      text: "Let’s start with your name",
+      emoji: "🙂",
+      p: "Type your name",
+    },
+    {
+      key: "email",
+      text: "What’s your email",
+      emoji: "📮",
+      p: "you@example.com",
+    },
     ...(emailExists === true
-      ? [{ key: "password", q: "Good to see you again 👋", p: "Your password" }]
+      ? [
+          {
+            key: "password",
+            text: "Welcome back!",
+            emoji: "👋",
+            p: "Enter your password",
+          },
+        ]
       : emailExists === false
         ? [
             {
               key: "password",
-              q: "Create a password.",
+              text: "Create a password",
+              emoji: "🛡️",
               p: "At least 8 characters",
             },
             {
               key: "confirmPassword",
-              q: "Confirm it once more.",
+              text: "One more time",
+              emoji: "😄",
               p: "Repeat password",
             },
           ]
@@ -129,9 +148,14 @@ export default function Unauth() {
   };
 
   return (
-    <main className="h-screen flex items-end justify-center p-40 bg-background">
+    <main className="main">
       <div className="container">
-        <span className="heading">{current.q}</span>
+        <span className="heading">
+          {current.text}{" "}
+          <span key={step} className="inline-block animate-pop">
+            {current.emoji}
+          </span>
+        </span>
 
         <div className="relative">
           <input

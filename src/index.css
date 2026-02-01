@@ -1,6 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap");
 @import "tailwindcss";
 
+/* =========================
+   BASE (elements only)
+   ========================= */
 @layer base {
   body {
     @apply bg-background text-text-primary font-sans;
@@ -8,40 +11,96 @@
   }
 }
 
+/* =========================
+   COMPONENTS
+   ========================= */
+@layer components {
+  .main {
+    @apply min-h-svh flex justify-center
+           items-center lg:items-end
+           px-4 py-10 sm:px-6 sm:py-16 lg:p-28;
+  }
+
+  .container {
+    @apply max-w-lg w-full mx-auto flex flex-col text-center
+           gap-6 sm:gap-8 lg:gap-10;
+  }
+
+  .heading {
+    @apply font-bold;
+    font-size: var(--text-heading);
+    color: var(--color-text-primary);
+  }
+
+  .input {
+    @apply w-full text-center outline-none border-b-2 py-2;
+    border-color: var(--color-input-border);
+    font-size: var(--text-body);
+  }
+}
+
+/* =========================
+   UTILITIES
+   ========================= */
+@layer utilities {
+  .bg-auth {
+    background-image: url("/wallpapers/welcome.gif");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .bg-unauth {
+    background-image: url("/wallpapers/welcome.gif");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .animate-pop {
+    animation: pop 300ms ease-out;
+  }
+}
+
+/* =========================
+   KEYFRAMES (global)
+   ========================= */
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   THEME (Tailwind v4)
+   ========================= */
 @theme {
   --color-primary: #1e3a8a;
   --color-secondary: #2563eb;
-  --color-background: #f9fafb;
-  --color-input-border: #9ca3af;
-  --color-text-primary: #111827;
+  --color-background: #0f172a;
+  --color-input-border: #f9fafb;
+  --color-text-primary: #f9fafb;
 
-  --text-heading: 2.5rem;
-  --text-subheading: 1.875rem;
-  --text-body: 1.125rem;
-  --text-small: 0.875rem;
-}
+  --text-size: 1.25rem;
 
-.main {
-  @apply h-screen w-screen flex justify-center items-end p-40 bg-background;
-}
+  --text-small: calc(var(--text-size) * 0.875);
+  --text-body: clamp(
+    calc(var(--text-size) * 1),
+    calc(var(--text-size) * 1.25 + 1vw),
+    calc(var(--text-size) * 1.125)
+  );
 
-.input {
-  @apply w-full text-center outline-none border-b-2 py-2;
-  border-color: var(--color-input-border);
-  font-size: var(--text-body); /* fixed */
-  transition: border-color 0.2s ease-in-out;
-}
+  --text-subheading: calc(var(--text-size) * 1.875);
 
-.input:focus {
-  border-color: var(--color-primary);
-}
-
-.heading {
-  @apply font-bold;
-  font-size: var(--text-heading);
-  color: var(--color-text-primary);
-}
-
-.container {
-  @apply max-w-lg w-full mx-auto flex flex-col text-center gap-10;
+  --text-heading: clamp(
+    calc(var(--text-size) * 1.5),
+    calc(var(--text-size) * 1.5 + 2vw),
+    calc(var(--text-size) * 2.5)
+  );
 }
