@@ -1,26 +1,27 @@
 import { Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import {
-  setDataToLocalStorage,
   getDataFromLocalStorage,
-} from "../utils/localstorage";
+  registerSearchBarShortcut,
+  setDataToLocalStorage,
+} from "../utils";
 
 const ENGINES = {
   google: {
     name: "Google",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg",
+    icon: "./icons/google.svg",
   },
   duckduckgo: {
     name: "DuckDuckGo",
-    icon: "https://upload.wikimedia.org/wikipedia/en/9/90/The_DuckDuckGo_Duck.png",
+    icon: "./icons/duckduckgo.png",
   },
   bing: {
     name: "Bing",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Bing_Logo.svg",
+    icon: "./icons/bing.svg",
   },
   yahoo: {
     name: "Yahoo",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/8/83/Yahoo%21_icon_%282009-2013%29.svg",
+    icon: "./icons/yahoo.svg",
   },
 };
 
@@ -55,6 +56,13 @@ export default function SearchBar() {
     setDataToLocalStorage("preferredSearchEngine", engine);
   }, [engine]);
 
+  registerSearchBarShortcut(() => {
+    const input = ref.current?.querySelector<HTMLInputElement>("input");
+    if (input) {
+      input.focus();
+    }
+  });
+
   function handleSearch() {
     const q = query.trim();
     if (!q) return;
@@ -73,6 +81,7 @@ export default function SearchBar() {
         onKeyDown={(e) => {
           if (e.key === "Enter") handleSearch();
         }}
+        autoFocus
         placeholder={`Search with ${ENGINES[engine].name}…`}
         className="search-input placeholder-gray-400"
       />

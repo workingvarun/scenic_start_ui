@@ -19,9 +19,10 @@ export const getDataFromLocalStorage = <T = unknown>(key: string): T | null => {
 // Set a value in localStorage
 export const setDataToLocalStorage = (key: string, value: unknown): void => {
   try {
-    // If value is primitive (string, number, boolean, null), store as JSON
-    // Objects / arrays will also be serialized properly
-    const item = JSON.stringify(value);
+    const item =
+      typeof value === "object" && value !== null
+        ? JSON.stringify(value)
+        : String(value);
     localStorage.setItem(key, item);
   } catch (error) {
     console.error(`Error setting "${key}" in localStorage:`, error);

@@ -21,6 +21,8 @@ export default function ProtectedApp() {
     checkAuth();
   }, []);
 
+   
+
   if (loading) {
     return (
       <div className="flex h-svh items-center justify-center text-body">
